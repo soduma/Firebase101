@@ -11,6 +11,7 @@ import Firebase
 class ViewController: UIViewController {
     
     @IBOutlet weak var dataLabel: UILabel!
+    @IBOutlet weak var numberOfCustomers: UILabel!
     
     let db = Database.database().reference()
     
@@ -18,12 +19,14 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         updateLabel()
-        saveBasicTypes()
-        saveCustomers()
+        
+//        saveBasicTypes()
+//        saveCustomers()
+        fetchCustomers()
     }
     
     func updateLabel() {
-        db.child("firstData").observe(.value) { snapshot in
+        db.child("firstData").observeSingleEvent(of: .value) { snapshot in
             print("---\(snapshot)")
             let value = snapshot.value as? String ?? ""
             
@@ -59,7 +62,27 @@ extension ViewController {
     }
 }
 
-struct Customer {
+extension ViewController {
+    func fetchCustomers() {
+        db.child("Customers").observeSingleEvent(of: .value) { snapshot in
+            print("---\(snapshot.value)")
+            
+            do {
+                let data = try JSONSerialization.data(withJSONObject: snapshot.value, options: [])
+                let decoder = JSONDecoder()
+                let customers: [Customer] = try decoder.decode([Customer].self, from: data)
+                DispatchQueue.main.async {
+                    self.numberOfCustomers.text = "# of Customers: \(customers.count)"
+                }
+                
+            } catch let error {
+                print("error : \(error.localizedDescription)")
+            }
+        }
+    }
+}
+
+struct Customer: Codable {
     let id: String
     let name: String
     let books: [Book]
@@ -73,7 +96,7 @@ struct Customer {
     static var id: Int = 0
 }
 
-struct Book {
+struct Book: Codable{
     let title: String
     let author: String
     
