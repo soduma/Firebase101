@@ -28,13 +28,61 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nQI-YQ-YfN">
+                                <rect key="frame" x="147.66666666666666" y="401" width="95" height="42"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <state key="normal" title="CREATE">
+                                    <color key="titleColor" systemColor="systemIndigoColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="createCutomer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lf8-Ff-OqW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QgD-qA-XUZ">
+                                <rect key="frame" x="161.66666666666666" y="493" width="67" height="42"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <state key="normal" title="READ">
+                                    <color key="titleColor" systemColor="systemIndigoColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="readCutomer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="k1W-Lc-xyJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WvQ-oK-RHT">
+                                <rect key="frame" x="149.66666666666666" y="677" width="91" height="42"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <state key="normal" title="DELETE">
+                                    <color key="titleColor" systemColor="systemIndigoColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteCutomer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vYA-xz-hYe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OIq-fF-e0D">
+                                <rect key="frame" x="146.66666666666666" y="585" width="97" height="42"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <state key="normal" title="UPDATE">
+                                    <color key="titleColor" systemColor="systemIndigoColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="updateCutomer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uMG-eF-Qcj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="QgD-qA-XUZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0x8-mz-46p"/>
+                            <constraint firstItem="QgD-qA-XUZ" firstAttribute="top" secondItem="nQI-YQ-YfN" secondAttribute="bottom" constant="50" id="3I6-uQ-Sue"/>
+                            <constraint firstItem="OIq-fF-e0D" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4NT-kh-NVu"/>
                             <constraint firstItem="dCK-cp-n5E" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="5j1-Wm-7xu"/>
                             <constraint firstItem="dCK-cp-n5E" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="6Jr-pz-Enw"/>
                             <constraint firstItem="LsR-DB-2ok" firstAttribute="top" secondItem="dCK-cp-n5E" secondAttribute="bottom" constant="50" id="7tC-9k-HzW"/>
+                            <constraint firstItem="WvQ-oK-RHT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="B7X-Lw-Qg3"/>
+                            <constraint firstItem="OIq-fF-e0D" firstAttribute="top" secondItem="QgD-qA-XUZ" secondAttribute="bottom" constant="50" id="Koe-J9-1y9"/>
+                            <constraint firstItem="nQI-YQ-YfN" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Zf6-7t-UC4"/>
+                            <constraint firstItem="nQI-YQ-YfN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cNV-oL-ojJ"/>
+                            <constraint firstItem="WvQ-oK-RHT" firstAttribute="top" secondItem="OIq-fF-e0D" secondAttribute="bottom" constant="50" id="ogS-UI-SFM"/>
                             <constraint firstItem="LsR-DB-2ok" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pjy-Hw-Rfw"/>
                         </constraints>
                     </view>
@@ -51,6 +99,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var numberOfCustomers: UILabel!
     
     let db = Database.database().reference()
+    var customers: [Customer] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +23,10 @@ class ViewController: UIViewController {
         
 //        saveBasicTypes()
 //        saveCustomers()
-        fetchCustomers()
+//        readCustomers()
+        
+//        updateBasicTypes()
+//        deleteBasicTypes()
     }
     
     func updateLabel() {
@@ -34,6 +38,34 @@ class ViewController: UIViewController {
                 self.dataLabel.text = value
             }
         }
+    }
+    
+    @IBAction func createCutomer(_ sender: Any) {
+        saveCustomers()
+    }
+    
+    @IBAction func readCutomer(_ sender: Any) {
+        readCustomers()
+    }
+    
+    func updateCustomers() {
+        guard customers.isEmpty == false else { return }
+        customers[0].name = "JANG"
+        
+        let dictionary = customers.map { $0.toDictionary }
+        db.updateChildValues(["Customers" : dictionary])
+    }
+    
+    @IBAction func updateCutomer(_ sender: Any) {
+        updateCustomers()
+    }
+    
+    func deleteCustomers() {
+        db.child("Customers").removeValue()
+    }
+    
+    @IBAction func deleteCutomer(_ sender: Any) {
+        deleteCustomers()
     }
 }
 
@@ -63,7 +95,7 @@ extension ViewController {
 }
 
 extension ViewController {
-    func fetchCustomers() {
+    func readCustomers() {
         db.child("Customers").observeSingleEvent(of: .value) { snapshot in
             print("---\(snapshot.value)")
             
@@ -71,6 +103,8 @@ extension ViewController {
                 let data = try JSONSerialization.data(withJSONObject: snapshot.value, options: [])
                 let decoder = JSONDecoder()
                 let customers: [Customer] = try decoder.decode([Customer].self, from: data)
+                self.customers = customers
+                
                 DispatchQueue.main.async {
                     self.numberOfCustomers.text = "# of Customers: \(customers.count)"
                 }
@@ -82,9 +116,27 @@ extension ViewController {
     }
 }
 
+extension ViewController {
+    func updateBasicTypes() {
+        db.updateChildValues(["int" : 999])
+        db.updateChildValues(["dou" : 3333.33])
+        db.updateChildValues(["str" : "ㅎㅎㅎㅎ"])
+
+//        db.child("int").setValue(1000)
+//        db.child("dou").setValue(5.5)
+//        db.child("str").setValue("ㅋㅋㅋㅋㅋ")
+    }
+    
+    func deleteBasicTypes() {
+        db.child("int").removeValue()
+        db.child("dou").removeValue()
+        db.child("str").removeValue()
+    }
+}
+
 struct Customer: Codable {
     let id: String
-    let name: String
+    var name: String
     let books: [Book]
     
     var toDictionary: [String : Any] {
